@@ -6,7 +6,7 @@ import os
 
 def predict_movie(request):
     # Load dataset to get unique names for dropdowns
-    df = pd.read_csv("C:\\Users\\nk568\\OneDrive\\Desktop\\mlproject001\\Letterbox Movie Classification\\Letterbox Movie Classification Dataset.csv")
+    df = pd.read_csv("Dataset.csv")
     
     # Extract unique values for text-based columns from the screenshot
     context = {
