@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+
+    <!-- Bootstrap for styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f5f7fa;
+        }
+        .result-box {
+            margin-top: 80px;
+            padding: 30px;
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .prediction {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+        .best-model {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="result-box text-center">
+
+                <h2 class="mb-4">🎬 Movie Prediction Result</h2>
+
+                <!-- Prediction Output -->
+                {% if prediction %}
+                    <p class="prediction">
+                        Prediction: {{ prediction }}
+                    </p>
+                {% else %}
+                    <p class="text-danger">No prediction available</p>
+                {% endif %}
+
+                <hr>
+
+                <!-- Best Algorithm -->
+                {% if best_algo %}
+                    <p class="best-model">
+                        Best Model: {{ best_algo }}
+                    </p>
+                {% endif %}
+
+                <hr>
+
+                <!-- Accuracy Table -->
+                {% if accuracies %}
+                    <h5 class="mb-3">Model Accuracies</h5>
+                    <table class="table table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Algorithm</th>
+                                <th>Accuracy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for algo, acc in accuracies.items %}
+                            <tr>
+                                <td>{{ algo|title }}</td>
+                                <td>{{ acc }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+
+                <br>
+
+                <!-- Back Button -->
+                <a href="{% url 'predict_movie' %}" class="btn btn-primary">
+                    🔙 Predict Again
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+```
